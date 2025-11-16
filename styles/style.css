@@ -11,9 +11,9 @@
 
 /* body */
 
-body {
+/* body {
   background-color: #1f242d;
-}
+} */
 
 /* Navbar  */
 
@@ -27,6 +27,19 @@ body {
   justify-content: space-between;
   align-items: center;
   z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  animation: show-content 1.5s linear forwards;
+  animation-delay: 1.2s;
+}
+
+/* navbar animation */
+
+@keyframes show-content {
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .navbar ul {
@@ -65,8 +78,13 @@ a {
   display: flex;
   align-items: center;
   height: 100vh;
+  gap: 50px;
   padding: 60px 9% 0;
   color: white;
+  visibility: hidden;
+  opacity: 0;
+  animation: show-content 1.5s linear forwards;
+  animation-delay: 1.6s;
 }
 
 .home-info h1 {
@@ -74,8 +92,52 @@ a {
 }
 
 .home-info h2 {
+  display: inline-block;
   font-size: 32px;
   margin-top: -10px;
+}
+
+/* Typewriter animation */
+
+.home-info h2 span {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 0.7px #7cf03d;
+  animation: display-text 16s linear infinite;
+  animation-delay: calc(-4s * var(--i));
+}
+/* key frames */
+@keyframes display-text {
+  25%,
+  100% {
+    display: none;
+  }
+}
+
+.home-info h2 span::before {
+  content: attr(data-text);
+  position: absolute;
+  width: 0;
+  border-right: 2px solid #7cf03d;
+  color: #7cf03d;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: fill-text 4s linear infinite;
+}
+
+/* keyframes */
+
+@keyframes fill-text {
+  10%,
+  100% {
+    width: 0;
+  }
+
+  70%,
+  90% {
+    width: 100%;
+  }
 }
 
 .home-info p {
@@ -129,28 +191,70 @@ a {
 }
 
 /* Home image */
-
 .home-img .img-box {
+  position: relative;
   width: 32vw;
   height: 32vw;
-  background: red;
   border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.home-img .img-box::before,
+.home-img .img-box::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: conic-gradient(transparent, transparent, transparent, #7cf03d);
 }
 
 .home-img .img-box .img-item {
   position: relative;
   width: 100%;
   height: 100%;
-  background: slateblue;
+  background: #1f242d;
   border-radius: 50%;
+  border: 0.1px solid #1f242d;
   display: flex;
+  z-index: 1;
   justify-content: center;
   overflow: hidden;
 }
 
 .home-img .img-box .img-item img {
   position: absolute;
+  top: 30px;
   display: block;
   width: 85%;
-  object-fit: contain;
+  object-fit: cover;
+  mix-blend-mode: lighten;
+}
+
+/* bar animation */
+.bars-animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: -1;
+}
+
+.bars-animation .bar {
+  width: 100%;
+  height: 100%;
+  background: #1f242d;
+  transform: translateY(-100%);
+  animation: show-bars 0.5s ease-in-out forwards;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+/* bars animation */
+@keyframes show-bars {
+  100% {
+    transform: translateY(0%);
+  }
 }
