@@ -1,104 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-/* default settings  */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: none;
-  outline: none;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* theme colors */
-:root {
-  --bg-color: #1f242d;
-  --second-bg-color: #323946;
-  --main-color: #7cf03d;
-  --white-color: #fff;
-  --disabled-color: #fff3;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  color: var(--white-color);
-}
-
-/* header */
-
-header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  padding: 2rem 9%;
-  display: flex;
-  background: var(--bg-color);
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-  /* visibility: hidden;
-  opacity: 0;
-  animation: show-content 1.5s linear forwards;
-  animation-delay: 1.2s; */
-}
-
-/* logo style */
-.logo {
-  font-size: 3rem;
-  color: var(--white-color);
-  font-weight: 700;
-}
-
-/* navbar links */
-
-nav a {
-  font-size: 2rem;
-  color: var(--white-color);
-  font-weight: 500;
-  margin-left: 3.5rem;
-  transition: 0.5s;
-}
-
-nav a:hover,
-nav a.active {
-  color: var(--main-color);
-}
-
-#menu-icon {
-  font-size: 4rem;
-  display: none;
-}
-
-section {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  padding: 10rem 9% 2rem;
-  background: var(--bg-color);
-  visibility: hidden;
-  opacity: 0;
-  overflow: hidden;
-}
-
-section.active {
-  visibility: visible;
-  opacity: 1;
-  overflow: auto;
-}
 /* Home Section */
 .home {
   display: flex;
   align-items: center;
   gap: 5rem;
-  /* visibility: hidden;
+  visibility: hidden;
   opacity: 0;
   animation: show-content 1.5s linear forwards;
-  animation-delay: 1.6s; */
+  animation-delay: 1.6s;
 }
 
 /* Home Typography */
@@ -269,7 +177,7 @@ section.active {
 }
 
 /* bar animation */
-.bars-animation {
+/* .bars-animation {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -284,11 +192,11 @@ section.active {
   transform: translateY(-100%);
   animation: show-bars 0.5s ease-in-out forwards;
   animation-delay: calc(0.1s * var(--i));
-}
+} */
 
 /* bars animation */
-@keyframes show-bars {
+/* @keyframes show-bars {
   100% {
     transform: translateY(0%);
   }
-}
+} */
