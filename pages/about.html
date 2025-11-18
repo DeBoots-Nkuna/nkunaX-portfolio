@@ -16,12 +16,76 @@
       <!-- mobile menu -->
       <ion-icon name="menu-outline" id="menu-icon"></ion-icon>
       <nav>
-        <a class="active" href="/pages/index.html">Home</a>
-        <a href="/pages/about.html">About</a>
+        <a href="/pages/home.html">Home</a>
+        <a class="active" href="/pages/about.html">About</a>
         <a href="/pages/resume.html">Resume</a>
         <a href="/pages/projects.html">Projects</a>
         <a href="/pages/contact.html">Contact</a>
       </nav>
     </header>
+
+    <section class="about active">
+      <div class="about-hero">
+        <!-- Left: Floating profile card -->
+        <div class="profile-card">
+          <div class="profile-photo">
+            <img
+              src="/assets/images/nkunaX-hero.png"
+              alt="Portrait of Nkuna with glasses and a bright smile"
+            />
+          </div>
+          <div class="floating-badge">
+            <ion-icon name="sparkles-outline"></ion-icon>
+            <span>NkunaX</span>
+          </div>
+        </div>
+
+        <!-- Right: Simple, clean summary -->
+        <div class="hero-copy">
+          <p class="eyebrow">About Nkuna</p>
+          <h1>Crafting intentional, human-focused digital experiences.</h1>
+
+          <p class="lede">
+            I’m Nkuna, a developer who loves turning ideas into products that
+            feel sharp, thoughtful, and easy to use. I care about the details –
+            from how a button feels on hover to how an entire flow supports real
+            people’s goals.
+          </p>
+
+          <p>
+            Right now, I’m focused on growing as a full-stack developer,
+            building projects that blend clean UI, solid architecture, and
+            real-world problem-solving. I enjoy working on products that help
+            people move, learn, or live a little better – whether that’s fitness
+            platforms, dashboards, or community-driven tools.
+          </p>
+
+          <p>
+            Outside the code editor, I’m constantly learning, experimenting, and
+            refining my craft – one commit at a time.
+          </p>
+
+          <div class="hero-tags">
+            <span class="pill">Full-stack in progress</span>
+            <span class="pill">Clean UI &amp; UX</span>
+            <span class="pill">Problem solver</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ion icons scriot -->
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <!-- custom script -->
+    <script src="/dist/navbar.js" type="module"></script>
   </body>
 </html>

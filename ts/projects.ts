@@ -31,7 +31,7 @@ function updateNavigation() {
 }
 
 function activeProject() {
-  const projectDetails = document.querySelector('.project-detail')
+  const projectDetails = document.querySelectorAll('.project-detail')
 
   //if statement to check if slide element exists
   if (!imgSlide) return
@@ -39,6 +39,10 @@ function activeProject() {
     index * 2
   }rem))`
 
+  projectDetails.forEach((detail) => {
+    detail.classList.remove('active')
+  })
+  projectDetails[index]?.classList.add('active')
   updateNavigation()
 }
 
@@ -64,4 +68,4 @@ arrowLeft?.addEventListener('click', () => {
   activeProject()
 })
 
-updateNavigation()
+activeProject()

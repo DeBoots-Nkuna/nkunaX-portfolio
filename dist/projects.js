@@ -15,11 +15,16 @@ function updateNavigation() {
     arrowRight.classList.toggle('disabled', isAtEnd);
 }
 function activeProject() {
-    const projectDetails = document.querySelector('.project-detail');
+    var _a;
+    const projectDetails = document.querySelectorAll('.project-detail');
     //if statement to check if slide element exists
     if (!imgSlide)
         return;
     imgSlide.style.transform = `translateX(calc(${index * -100}% - ${index * 2}rem))`;
+    projectDetails.forEach((detail) => {
+        detail.classList.remove('active');
+    });
+    (_a = projectDetails[index]) === null || _a === void 0 ? void 0 : _a.classList.add('active');
     updateNavigation();
 }
 // right arrow btn (next)
@@ -42,6 +47,6 @@ arrowLeft === null || arrowLeft === void 0 ? void 0 : arrowLeft.addEventListener
     }
     activeProject();
 });
-updateNavigation();
+activeProject();
 export {};
 //# sourceMappingURL=projects.js.map

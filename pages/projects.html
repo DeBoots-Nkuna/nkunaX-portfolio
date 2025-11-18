@@ -16,10 +16,10 @@
       <!-- mobile menu -->
       <ion-icon name="menu-outline" id="menu-icon"></ion-icon>
       <nav>
-        <a class="active" href="/pages/index.html">Home</a>
+        <a href="/pages/home.html">Home</a>
         <a href="/pages/about.html">About</a>
         <a href="/pages/resume.html">Resume</a>
-        <a href="/pages/projects.html">Projects</a>
+        <a class="active" href="/pages/projects.html">Projects</a>
         <a href="/pages/contact.html">Contact</a>
       </nav>
     </header>
@@ -29,9 +29,55 @@
       <h2 class="heading">Latest <span>Projects</span></h2>
       <div class="project-container">
         <div class="project-box">
-          <!-- project details -->
           <div class="project-detail active">
             <p class="numb">01</p>
+            <h3>FullStack Project</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              eaque magni veniam quasi? Porro reiciendis.
+            </p>
+            <div class="tech">
+              <p>
+                Next.js, Tailwind CSS, Shadcn/ui, TypeScript, Express.js ,
+                PostgreSQL, Prisma, OpenAI
+              </p>
+            </div>
+            <div class="live-github">
+              <a href="#" target="_blank"
+                ><ion-icon name="arrow-back-outline"></ion-icon>
+                <span>Live Project</span></a
+              >
+              <a href="#" target="_blank"
+                ><ion-icon name="logo-github"></ion-icon>
+                <span>Github Repository</span></a
+              >
+            </div>
+          </div>
+          <!-- project 2 -->
+          <div class="project-detail">
+            <p class="numb">02</p>
+            <h3>FullStack Project</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              eaque magni veniam quasi? Porro reiciendis.
+            </p>
+            <div class="tech">
+              <p>SveltKit, Typescript, Google Classroom, Firebase</p>
+            </div>
+            <div class="live-github">
+              <a href="#" target="_blank"
+                ><ion-icon name="arrow-back-outline"></ion-icon>
+                <span>Live Project</span></a
+              >
+              <a href="#" target="_blank"
+                ><ion-icon name="logo-github"></ion-icon>
+                <span>Github Repository</span></a
+              >
+            </div>
+          </div>
+          <!-- project 3 -->
+          <div class="project-detail">
+            <p class="numb">03</p>
             <h3>Frontend Project</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
@@ -51,14 +97,10 @@
               >
             </div>
           </div>
-          <div class="project-detail">
-            <p class="numb">02</p>
-          </div>
-          <div class="project-detail">
-            <p class="numb">03</p>
-          </div>
+          <!-- project 4 -->
           <div class="project-detail">
             <p class="numb">04</p>
+            <h3>Coming Soon..</h3>
           </div>
         </div>
         <!-- image container -->
@@ -68,7 +110,7 @@
               <!-- game hub -->
               <div class="img-item">
                 <img
-                  src="/assets/images/projects/project3.png"
+                  src="/assets/images/projects/project2.png"
                   alt="Boots Game Hub site image in purple with a purple background color"
                 />
               </div>
@@ -80,7 +122,7 @@
               </div>
               <div class="img-item">
                 <img
-                  src="/assets/images/projects/project2.png"
+                  src="/assets/images/projects/project3.png"
                   alt="TrainerConnect site with green and black ground color ."
                 />
               </div>
@@ -107,6 +149,7 @@
     </section>
 
     <!-- icons script -->
+
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -118,5 +161,6 @@
 
     <!-- custom script -->
     <script type="module" src="/dist/projects.js"></script>
+    <script src="/dist/navbar.js" type="module"></script>
   </body>
 </html>
