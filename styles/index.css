@@ -47,6 +47,46 @@ canvas#matrix {
   animation: float-btn 3.4s ease-in-out infinite, fadeIn 0.8s ease-out forwards;
   transform-origin: center;
   text-align: center;
+
+  /* needed for click effect */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+/* glowing ripple overlay */
+.enter-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(188, 255, 120, 0.6) 0%,
+    rgba(188, 255, 120, 0) 70%
+  );
+
+  opacity: 0;
+  transform: scale(0.2);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* hover: a bit more “click me” */
+.enter-btn:hover {
+  box-shadow: 0 1.6rem 3.2rem rgba(124, 240, 61, 0.6);
+}
+
+.enter-btn:active {
+  transform: scale(0.94) translateY(2px);
+  box-shadow: 0 0.6rem 1.6rem rgba(124, 240, 61, 0.4);
+  animation: none;
+}
+
+.enter-btn:active::after {
+  opacity: 1;
+  transform: scale(1.6);
 }
 
 /* stack button + subtitle nicely */
@@ -63,11 +103,6 @@ canvas#matrix {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.65);
-}
-
-/* hover: a bit more “click me” */
-.enter-btn:hover {
-  box-shadow: 0 1.6rem 3.2rem rgba(124, 240, 61, 0.6);
 }
 
 /* keyframes */
