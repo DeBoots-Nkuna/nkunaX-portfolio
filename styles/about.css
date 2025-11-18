@@ -22,7 +22,7 @@
 .about-hero {
   display: grid;
   grid-template-columns: minmax(28rem, 34rem) 1fr;
-  gap: 4rem;
+  gap: 6rem;
   align-items: center;
 }
 
@@ -155,11 +155,76 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  max-width: 52rem;
 }
 
-.hero-copy h1 {
-  font-size: clamp(3rem, 5vw, 4.8rem);
-  line-height: 1.1;
+.hero-copy p {
+  max-width: 52ch;
+}
+
+/* two-column row for outside coding + matrix motive */
+.hero-extra {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+
+.body-copy {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* small section titles */
+.mini-label {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* green title for Outside coding */
+.mini-label.outside-label {
+  color: var(--main-color);
+}
+
+/* optional: slightly different tone for motive label */
+.mini-label.motive-label {
+  color: rgba(180, 255, 180, 0.9);
+}
+
+/* Matrix styling */
+.matrix-title {
+  color: var(--main-color);
+  font-style: italic;
+}
+
+.matrix-quote {
+  display: block;
+  margin-top: 0.6rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.35rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+
+  background: rgba(124, 240, 61, 0.12); /* soft green glow */
+  border-left: 0.2rem solid var(--main-color);
+  border-radius: 0.8rem;
+}
+
+.matrix-reminder {
+  display: block;
+  margin-top: 0.8rem; /* adds spacing above the line */
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--main-color); /* Matrix green vibe */
+  letter-spacing: 0.04rem;
+}
+
+.hero-copy .body-copy {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .hero-copy .lede {
@@ -374,6 +439,7 @@
 @media (max-width: 1024px) {
   .about-hero {
     grid-template-columns: 1fr;
+    column-gap: 3rem;
   }
 
   .profile-card {
@@ -385,6 +451,10 @@
 @media (max-width: 700px) {
   .about {
     padding: 10rem 7% 3rem;
+  }
+
+  .hero-extra {
+    grid-template-columns: 1fr;
   }
 
   .hero-highlights {
