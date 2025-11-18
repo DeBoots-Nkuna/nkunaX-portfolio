@@ -158,6 +158,10 @@
 .resume-btn:hover {
   transform: translateY(-2px);
 }
+.resume-btn:focus-visible {
+  outline: 2px solid var(--main-color);
+  outline-offset: 2px;
+}
 
 .resume-btn.active {
   border-color: var(--main-color);
@@ -222,6 +226,8 @@
 .section-head .desc {
   font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.82);
+  max-width: 60ch;
+  line-height: 1.5;
 }
 
 .resume-list {
@@ -250,6 +256,28 @@
   box-shadow: 0 1.4rem 3rem rgba(124, 240, 61, 0.12);
 }
 
+.highlighted-award {
+  margin-top: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(124, 240, 61, 0.12);
+  border: 0.1rem solid rgba(124, 240, 61, 0.55);
+
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  color: var(--main-color);
+}
+
+.highlighted-award ion-icon {
+  font-size: 1.5rem;
+}
+
 .year-tag {
   padding: 0.6rem 1.2rem;
   border-radius: 0.8rem;
@@ -267,7 +295,8 @@
 
 .resume-item .company {
   font-size: 1.4rem;
-  color: var(--disabled-color);
+  font-weight: 500;
+  color: rgba(126, 125, 125, 0.8);
   margin: 0.2rem 0 0.6rem;
 }
 
