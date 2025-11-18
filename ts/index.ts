@@ -3,6 +3,7 @@ const canvas = document.getElementById('matrix') as HTMLCanvasElement | null
 if (canvas) {
   const ctx = canvas.getContext('2d')
 
+  // matrix bg
   if (ctx) {
     const chars = '01✓⚡+×•'
     const fontSize = 16
@@ -18,11 +19,9 @@ if (canvas) {
       drops = Array.from({ length: columns }, () => 1)
     }
 
-    // initial setup
     resize()
 
     const draw = () => {
-      // translucent background for trail effect
       ctx.fillStyle = 'rgba(31, 36, 45, 0.25)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -30,7 +29,7 @@ if (canvas) {
       ctx.font = `${fontSize}px monospace`
 
       for (let i = 0; i < drops.length; i++) {
-        const y = drops[i] ?? 1 // fallback so it's never undefined
+        const y = drops[i] ?? 1
         const text = chars.charAt(Math.floor(Math.random() * chars.length))
         const x = i * fontSize
 
@@ -41,11 +40,30 @@ if (canvas) {
           newY = 0
         }
 
-        drops[i] = newY // safe write-back
+        drops[i] = newY
       }
     }
 
     window.addEventListener('resize', resize)
     setInterval(draw, 50)
   }
+}
+
+// Welcome page exit transition
+const enterBtn = document.getElementById(
+  'enter-btn'
+) as HTMLAnchorElement | null
+
+if (enterBtn) {
+  enterBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+
+    const targetUrl = enterBtn.href
+
+    document.body.classList.add('welcome-leaving')
+
+    setTimeout(() => {
+      window.location.href = targetUrl
+    }, 850)
+  })
 }

@@ -92,6 +92,29 @@ canvas#matrix {
   }
 }
 
+/* when leaving the welcome screen */
+body.welcome-leaving .overlay {
+  animation: welcomeExit 0.9s ease-in forwards;
+}
+
+@keyframes welcomeExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  60% {
+    opacity: 0.4;
+    transform: scale(1.02);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+    filter: blur(8px);
+  }
+}
+
 /*  media queries */
 @media (max-width: 520px) {
   .enter-btn {

@@ -3,24 +3,33 @@
   align-items: center;
   justify-content: space-between;
   gap: 5rem;
-  min-height: 100vh;
+  padding: 8rem 9% 3rem;
+  min-height: calc(100vh - 8rem - 3rem);
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(124, 240, 61, 0.05),
+      transparent 30%
+    ),
+    radial-gradient(circle at 80% 0%, rgba(124, 240, 61, 0.05), transparent 25%),
+    var(--bg-color);
   visibility: hidden;
   opacity: 0;
-  animation: fadeInUp 1s ease forwards;
+  animation: homeBlurIn 0.6s ease-out forwards;
 }
 
-/* fade in animation */
-@keyframes fadeInUp {
+/* blurry animation */
+@keyframes homeBlurIn {
   0% {
-    transform: translateY(12px);
     opacity: 0;
+    filter: blur(8px);
+    transform: translateY(8px);
   }
   100% {
-    transform: translateY(0);
     opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
   }
 }
-
 /* typography */
 
 .home-info h1 {

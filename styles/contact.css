@@ -6,11 +6,8 @@
   flex-direction: column;
   justify-content: center;
   gap: 3rem;
-
-  /* same feel as .resume */
   padding: 10rem 9% 4rem;
-  min-height: 100vh;
-
+  min-height: calc(100vh - 10rem - 4rem);
   background: radial-gradient(
       circle at 20% 20%,
       rgba(124, 240, 61, 0.08),
@@ -19,10 +16,10 @@
     radial-gradient(circle at 80% 0%, rgba(124, 240, 61, 0.05), transparent 25%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
     var(--bg-color);
-
+  animation: softPageIn 0.45s ease-out forwards;
   visibility: visible;
   opacity: 1;
-  overflow: hidden; /* clips ambient blobs so no sideways scroll */
+  overflow: hidden;
 }
 
 /* ambient blobs */
@@ -130,7 +127,6 @@
 }
 
 /* buttons + chips + social */
-
 .cta-row {
   display: flex;
   gap: 1.2rem;
@@ -213,7 +209,6 @@
 }
 
 /* RIGHT SIDE – cards */
-
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;

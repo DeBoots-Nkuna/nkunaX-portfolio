@@ -27,6 +27,7 @@ html {
 
 body {
   color: var(--white-color);
+  background: var(--bg-color);
   overflow-x: hidden;
 }
 
@@ -74,15 +75,21 @@ nav a.active {
   cursor: pointer;
 }
 
-section {
+/* section {
   width: 100%;
   padding: 10rem 9% 2rem;
   background: var(--bg-color);
   min-height: 100vh;
   visibility: hidden;
   opacity: 0;
-}
+} */
 
+section {
+  width: 100%;
+  background: var(--bg-color);
+  visibility: hidden;
+  opacity: 0;
+}
 /* the “visible” page */
 section.active {
   visibility: visible;
@@ -144,5 +151,17 @@ section.active {
 
   body.nav-open {
     overflow: hidden;
+  }
+}
+
+/* smooth, soft page enter */
+@keyframes softPageIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
