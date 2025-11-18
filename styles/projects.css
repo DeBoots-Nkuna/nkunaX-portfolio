@@ -121,6 +121,34 @@
   display: none;
 }
 
+.project-detail h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.project-type {
+  font-size: 1.2rem;
+  padding: 0.2rem 0.9rem;
+  border-radius: 999px;
+  border: 0.1rem solid;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+}
+
+.project-type--fullstack {
+  color: var(--main-color);
+  border-color: var(--main-color);
+  background: rgba(124, 240, 61, 0.12);
+}
+
+.project-type--frontend {
+  color: #a855f7; /* soft purple to match your vibe */
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.12);
+}
+
 .project-detail.active {
   display: grid;
   gap: 1.2rem;
@@ -154,6 +182,7 @@
   font-size: 1.6rem;
 }
 
+/* technology stacks  */
 .project-box .tech {
   margin: 1.2rem 0;
   color: var(--main-color);
@@ -163,6 +192,25 @@
   background: rgba(124, 240, 61, 0.08);
   box-shadow: 0 1rem 2rem rgba(124, 240, 61, 0.1);
 }
+
+.tech-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+.tech-tags li {
+  font-size: 1.25rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.1rem solid rgba(124, 240, 61, 0.4);
+}
+
+/* links styling */
 
 .project-box .live-github {
   display: flex;
