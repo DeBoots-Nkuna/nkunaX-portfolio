@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const soundToggleBtn =
     document.querySelector<HTMLButtonElement>('.sound-toggle')
+  // small screens
+  const isSmallScreen = window.matchMedia('(max-width: 1023px)')
 
   //display sound on by default
   let soundEnabled = localStorage.getItem('nx_sound_enabled') !== 'false'
@@ -21,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function playSound(audioEl: HTMLAudioElement | null): void {
     if (!soundEnabled || !audioEl) return
+    //no sounds for small screens and tablets
+    if (isSmallScreen.matches) return
     audioEl.currentTime = 0
     audioEl.play().catch(() => {})
   }

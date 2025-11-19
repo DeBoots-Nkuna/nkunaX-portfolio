@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const enterSound = document.querySelector('#ui-enter-sound');
     const ambientSound = document.querySelector('#ui-ambient-sound');
     const soundToggleBtn = document.querySelector('.sound-toggle');
+    // small screens
+    const isSmallScreen = window.matchMedia('(max-width: 1023px)');
     //display sound on by default
     let soundEnabled = localStorage.getItem('nx_sound_enabled') !== 'false';
     //toggle sound on or off
@@ -15,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     function playSound(audioEl) {
         if (!soundEnabled || !audioEl)
+            return;
+        //no sounds for small screens and tablets
+        if (isSmallScreen.matches)
             return;
         audioEl.currentTime = 0;
         audioEl.play().catch(() => { });
