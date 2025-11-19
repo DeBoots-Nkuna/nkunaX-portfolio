@@ -15,6 +15,21 @@
 
       <div class="overlay">
         <div class="welcome-stack">
+          <!-- sound effects -->
+          <audio
+            id="ui-click-sound"
+            src="/assets/sounds/click.mp3"
+            preload="auto"
+          ></audio>
+          <audio
+            id="ui-enter-sound"
+            src="/assets/sounds/woosh.mp3"
+            preload="auto"
+          ></audio>
+          <!-- sound btn toggle -->
+          <button class="sound-toggle" aria-pressed="false">
+            🔊 Sound: on
+          </button>
           <a class="enter-btn" id="enter-btn" href="/pages/home.html">
             Enter the grid
           </a>
@@ -24,6 +39,7 @@
 
       <!-- custom script -->
       <script type="module" src="/dist/index.js"></script>
+      <script type="module" src="/dist/base.js"></script>
     </body>
   </body>
 </html>
