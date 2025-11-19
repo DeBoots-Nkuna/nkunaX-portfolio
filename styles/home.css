@@ -14,22 +14,8 @@
     var(--bg-color);
   visibility: hidden;
   opacity: 0;
-  /* animation: homeBlurIn 0.6s ease-out forwards; */
 }
 
-/* blurry animation */
-/* @keyframes homeBlurIn {
-  0% {
-    opacity: 0;
-    filter: blur(8px);
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-} */
 /* typography */
 
 .home-info h1 {
@@ -260,5 +246,11 @@
 
   .home-info .btn-sci .sci a {
     margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .home {
+    min-height: calc(100vh - 8rem - 4.7rem);
   }
 }

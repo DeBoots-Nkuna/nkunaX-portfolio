@@ -371,7 +371,17 @@ body.page-leaving .site-footer {
   }
 }
 
-/* media queries */
+/* smaller device light animation */
+@keyframes mobileOverlayFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Desktop only */
 @media (min-width: 1024px) {
   .sound-toggle {
     display: inline-flex;
@@ -380,23 +390,24 @@ body.page-leaving .site-footer {
   }
 }
 
+/* Tablets + mobile */
 @media (max-width: 1023px) {
   .sound-hint {
     display: none;
   }
 
-  /* hiding overlay for small screens */
-  .matrix-transition-layer {
-    display: none !important;
+  /* turn OFF matrix rain on smaller devices */
+  canvas#matrix {
+    display: none;
   }
 
   body.page-leaving .matrix-transition-layer {
-    animation: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
+    animation: none !important;
   }
 
-  /* keep content fully visible, no fade-out */
+  /* keep content visible, no fade-out */
   body.page-leaving header,
   body.page-leaving .home,
   body.page-leaving .about,
@@ -404,12 +415,31 @@ body.page-leaving .site-footer {
   body.page-leaving .projects,
   body.page-leaving .contact,
   body.page-leaving .site-footer {
-    transition: none !important;
     opacity: 1 !important;
+    transition: none !important;
+  }
+
+  /* no enter animation either */
+  section.active {
+    animation: none !important;
+  }
+
+  /* keep cursor + sound tweaks you already had */
+  .sound-hint {
+    display: none;
   }
 
   #cursor-trail-container {
     display: none;
+  }
+
+  /* ✨ Soft, tiny fade/slide in for the page content itself */
+  .home,
+  .about,
+  .resume,
+  .projects,
+  .contact {
+    animation: softPageIn 0.22s ease-out;
   }
 }
 
@@ -456,32 +486,5 @@ body.page-leaving .site-footer {
 
   body.nav-open {
     overflow: hidden;
-  }
-
-  /* hiding overlay for small screens */
-  .matrix-transition-layer {
-    display: none !important;
-  }
-
-  body.page-leaving .matrix-transition-layer {
-    animation: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-
-  /* keep content fully visible, no fade-out */
-  body.page-leaving header,
-  body.page-leaving .home,
-  body.page-leaving .about,
-  body.page-leaving .resume,
-  body.page-leaving .projects,
-  body.page-leaving .contact,
-  body.page-leaving .site-footer {
-    transition: none !important;
-    opacity: 1 !important;
-  }
-
-  #cursor-trail-container {
-    display: none;
   }
 }
