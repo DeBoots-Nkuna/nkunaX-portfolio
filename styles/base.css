@@ -298,7 +298,8 @@ section.active {
   gap: 0.4rem;
   transition: background 0.25s ease, border-color 0.25s ease,
     transform 0.15s ease;
-  margin-bottom: 0.6rem; /* space above the big green button */
+  margin-bottom: 0.6rem;
+  display: none;
 }
 
 .sound-toggle:hover {
@@ -309,4 +310,38 @@ section.active {
 
 .sound-toggle[aria-pressed='false'] {
   opacity: 0.7;
+}
+
+/* Generic page leave animation for inner pages */
+body.page-leaving {
+  animation: pageExit 0.7s ease-in forwards;
+}
+
+@keyframes pageExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  60% {
+    opacity: 0.5;
+    transform: scale(1.01);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.03);
+    filter: blur(6px);
+  }
+}
+
+/* media query */
+
+/* show from 900px and up */
+@media (min-width: 900px) {
+  .sound-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
