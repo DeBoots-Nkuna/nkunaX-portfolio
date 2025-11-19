@@ -329,20 +329,31 @@ section.active {
   inset: 0;
   z-index: 998;
   pointer-events: none;
+
+  /* Dark glass, but let the rain show through */
   background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(4px);
 
   opacity: 0;
   visibility: hidden;
 }
-/* When leaving an inner page, fade out through the Matrix gate */
+
 body.page-leaving .matrix-transition-layer {
   opacity: 1;
   visibility: visible;
   animation: matrixOverlayExit 0.9s ease-in forwards;
 }
+body.page-leaving header,
+body.page-leaving .home,
+body.page-leaving .about,
+body.page-leaving .resume,
+body.page-leaving .projects,
+body.page-leaving .contact,
+body.page-leaving .site-footer {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
 
-/* Same shape as your welcomeExit, applied to the overlay */
 @keyframes matrixOverlayExit {
   0% {
     opacity: 1;
