@@ -15,6 +15,12 @@
     <title>NkunaX - Resume</title>
   </head>
   <body>
+    <!-- sound effects -->
+    <audio
+      id="ui-click-sound"
+      src="/assets/sounds/scifi-click.mp3"
+      preload="auto"
+    ></audio>
     <!-- navbar -->
     <header>
       <a href="#" class="logo">NkunaX.</a>
@@ -28,6 +34,8 @@
         <a href="/pages/projects.html">Projects</a>
         <a href="/pages/contact.html">Contact</a>
       </nav>
+      <!-- sound btn toggle -->
+      <button class="sound-toggle" aria-pressed="false">🔊 Sound: on</button>
     </header>
 
     <!-- resume section -->
@@ -262,6 +270,8 @@
         </div>
       </div>
     </footer>
+    <!-- cursor pointer -->
+    <div id="cursor-trail-container"></div>
 
     <!-- ions icon script -->
     <script

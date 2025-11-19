@@ -10,6 +10,12 @@
     <title>NkunaX - About Me</title>
   </head>
   <body>
+    <!-- sound effects -->
+    <audio
+      id="ui-click-sound"
+      src="/assets/sounds/scifi-click.mp3"
+      preload="auto"
+    ></audio>
     <!-- Header -->
     <header>
       <a href="/pages/home.html" class="logo">NkunaX.</a>
@@ -23,6 +29,8 @@
         <a href="/pages/projects.html">Projects</a>
         <a href="/pages/contact.html">Contact</a>
       </nav>
+      <!-- sound btn toggle -->
+      <button class="sound-toggle" aria-pressed="false">🔊 Sound: on</button>
     </header>
 
     <section class="about active">
@@ -137,6 +145,9 @@
         </div>
       </div>
     </footer>
+
+    <!-- cursor pointer -->
+    <div id="cursor-trail-container"></div>
 
     <!-- ion icons scriot -->
     <script

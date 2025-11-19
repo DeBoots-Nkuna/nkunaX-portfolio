@@ -10,40 +10,27 @@
     <title>NkunaX - Home</title>
   </head>
   <body>
+    <!-- sound effects -->
+    <audio
+      id="ui-click-sound"
+      src="/assets/sounds/scifi-click.mp3"
+      preload="auto"
+    ></audio>
     <!-- Header -->
     <header>
       <a href="/pages/home.html" class="logo">NkunaX.</a>
-
       <!-- mobile menu -->
       <ion-icon name="menu-outline" id="menu-icon"></ion-icon>
       <nav>
-        <a class="active" href="/pages/home.html">Home</a>
-        <a href="/pages/about.html">About</a>
-        <a href="/pages/resume.html">Resume</a>
-        <a href="/pages/projects.html">Projects</a>
-        <a href="/pages/contact.html">Contact</a>
+        <a class="active btn-sound" href="/pages/home.html">Home</a>
+        <a class="btn-sound" href="/pages/about.html">About</a>
+        <a class="btn-sound" href="/pages/resume.html">Resume</a>
+        <a class="btn-sound" href="/pages/projects.html">Projects</a>
+        <a class="btn-sound" href="/pages/contact.html">Contact</a>
       </nav>
 
-      <!-- Sound players -->
-      <audio
-        id="ui-click-sound"
-        src="/assets/sounds/scifi-click.mp3"
-        preload="auto"
-      ></audio>
-      <audio
-        id="ui-nav-sound"
-        src="/assets/sounds/hi-tech-woosh.mp3"
-        preload="auto"
-      ></audio>
-
-      <!-- Optional mute toggle-->
-      <button
-        class="sound-toggle"
-        aria-pressed="false"
-        title="Toggle UI sounds"
-      >
-        🔊 Sound: On
-      </button>
+      <!-- sound btn toggle -->
+      <button class="sound-toggle" aria-pressed="false">🔊 Sound: on</button>
     </header>
 
     <!-- animation  Bars-->
@@ -141,6 +128,9 @@
         </div>
       </div>
     </footer>
+
+    <!-- cursor pointer -->
+    <div id="cursor-trail-container"></div>
 
     <!-- cursor pointer -->
     <div id="cursor-trail-container"></div>

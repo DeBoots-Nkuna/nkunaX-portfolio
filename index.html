@@ -10,36 +10,35 @@
     <title>NkunaX - Welcome</title>
   </head>
   <body>
-    <body>
-      <canvas id="matrix"></canvas>
+    <!-- matrix rain -->
+    <canvas id="matrix"></canvas>
 
-      <div class="overlay">
-        <div class="welcome-stack">
-          <!-- sound effects -->
-          <audio
-            id="ui-click-sound"
-            src="/assets/sounds/click.mp3"
-            preload="auto"
-          ></audio>
-          <audio
-            id="ui-enter-sound"
-            src="/assets/sounds/woosh.mp3"
-            preload="auto"
-          ></audio>
-          <!-- sound btn toggle -->
-          <button class="sound-toggle" aria-pressed="false">
-            🔊 Sound: on
-          </button>
-          <a class="enter-btn" id="enter-btn" href="/pages/home.html">
-            Enter the grid
-          </a>
-          <p class="welcome-subtitle">NkunaX Portfolio</p>
-        </div>
+    <div class="overlay">
+      <div class="welcome-stack">
+        <!-- sound effects -->
+        <audio
+          id="ui-click-sound"
+          src="/assets/sounds/scifi-click.mp3"
+          preload="auto"
+        ></audio>
+        <audio
+          id="ui-enter-sound"
+          src="/assets/sounds/static-woosh.mp3"
+          preload="auto"
+        ></audio>
+        <!-- sound btn toggle -->
+        <button class="sound-toggle" aria-pressed="false">🔊 Sound: on</button>
+        <a class="enter-btn" id="enter-btn" href="/pages/home.html">
+          Enter the grid
+        </a>
+        <p class="welcome-subtitle">NkunaX Portfolio</p>
       </div>
+    </div>
+    <!-- cursor pointer -->
+    <div id="cursor-trail-container"></div>
 
-      <!-- custom script -->
-      <script type="module" src="/dist/index.js"></script>
-      <script type="module" src="/dist/base.js"></script>
-    </body>
+    <!-- custom script -->
+    <script type="module" src="/dist/base.js"></script>
+    <script type="module" src="/dist/index.js"></script>
   </body>
 </html>

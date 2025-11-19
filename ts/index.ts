@@ -1,5 +1,5 @@
+//matrix rail background
 const canvas = document.getElementById('matrix') as HTMLCanvasElement | null
-
 if (canvas) {
   const ctx = canvas.getContext('2d')
 
