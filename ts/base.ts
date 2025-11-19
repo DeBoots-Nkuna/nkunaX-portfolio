@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const soundToggleBtn =
     document.querySelector<HTMLButtonElement>('.sound-toggle')
   // small screens
-  const isSmallScreen = window.matchMedia('(max-width: 1023px)')
+  const isSmallScreen = window.matchMedia('(max-width: 1250px)')
 
   //display sound on by default
   let soundEnabled = localStorage.getItem('nx_sound_enabled') !== 'false'

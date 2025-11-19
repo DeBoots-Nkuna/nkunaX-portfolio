@@ -381,8 +381,14 @@ body.page-leaving .site-footer {
   }
 }
 
+@media (max-width: 1200px), (pointer: coarse) {
+  .sound-hint {
+    display: none !important;
+  }
+}
+
 /* Desktop only */
-@media (min-width: 1024px) {
+@media (min-width: 1250px) {
   .sound-toggle {
     display: inline-flex;
     align-items: center;
@@ -447,6 +453,11 @@ body.page-leaving .site-footer {
 @media (max-width: 836px) {
   header {
     padding: 1.6rem 7%;
+  }
+
+  /* keep cursor + sound tweaks you already had */
+  .sound-hint {
+    display: none;
   }
 
   /* show burger icon on mobile */

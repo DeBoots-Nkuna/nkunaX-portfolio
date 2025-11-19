@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ambientSound = document.querySelector('#ui-ambient-sound');
     const soundToggleBtn = document.querySelector('.sound-toggle');
     // small screens
-    const isSmallScreen = window.matchMedia('(max-width: 1023px)');
+    const isSmallScreen = window.matchMedia('(max-width: 1250px)');
     //display sound on by default
     let soundEnabled = localStorage.getItem('nx_sound_enabled') !== 'false';
     //toggle sound on or off
