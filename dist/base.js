@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('NX base script loaded');
     const clickSound = document.querySelector('#ui-click-sound');
     const enterSound = document.querySelector('#ui-enter-sound');
+    const ambientSound = document.querySelector('#ui-ambient-sound');
     const soundToggleBtn = document.querySelector('.sound-toggle');
-    // 🔊 Sound ON by default unless user previously turned it off
+    //display sound on by default
     let soundEnabled = localStorage.getItem('nx_sound_enabled') !== 'false';
+    //toggle sound on or off
     const updateSoundToggleLabel = () => {
         if (!soundToggleBtn)
             return;
@@ -15,25 +17,82 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!soundEnabled || !audioEl)
             return;
         audioEl.currentTime = 0;
-        audioEl.play().catch(() => {
-            // ignore autoplay errors
-        });
+        audioEl.play().catch(() => { });
     }
-    // Init toggle, if present on this page
+    // --- Ambient Matrix rain (welcome page only) ---
+    let ambientStarted = false;
+    const updateAmbient = () => {
+        if (!ambientSound)
+            return;
+        if (!soundEnabled) {
+            // stop if user turned sound off
+            ambientSound.pause();
+            ambientSound.currentTime = 0;
+            ambientStarted = false;
+            return;
+        }
+        // low volume, looping
+        ambientSound.loop = true;
+        ambientSound.volume = 0.2;
+        ambientSound
+            .play()
+            .then(() => {
+            ambientStarted = true;
+            // if the tip bubble is visible, hide it
+            const hint = document.querySelector('.sound-hint');
+            if (hint) {
+                hint.classList.add('sound-hint--hide');
+                setTimeout(() => hint.remove(), 260);
+            }
+        })
+            .catch(() => { });
+    };
+    //sound toggle btn
     if (soundToggleBtn) {
         updateSoundToggleLabel();
         soundToggleBtn.addEventListener('click', () => {
             soundEnabled = !soundEnabled;
             localStorage.setItem('nx_sound_enabled', soundEnabled ? 'true' : 'false');
             updateSoundToggleLabel();
+            updateAmbient();
         });
+    }
+    //trying auto play
+    if (ambientSound) {
+        // Create the little "click to enable sound" bubble
+        const showAmbientHint = () => {
+            // if already on screen, don't add another
+            if (document.querySelector('.sound-hint'))
+                return;
+            const div = document.createElement('div');
+            div.className = 'sound-hint';
+            div.textContent = 'Tip: click anywhere on the Matrix to enable sound.';
+            document.body.appendChild(div);
+        };
+        const tryStartAmbient = () => {
+            if (!soundEnabled)
+                return;
+            if (!ambientStarted) {
+                updateAmbient();
+            }
+            //display hit if sound no play auto
+            if (!ambientStarted) {
+                showAmbientHint();
+            }
+        };
+        setTimeout(() => {
+            tryStartAmbient();
+        }, 800);
+        window.addEventListener('click', () => {
+            tryStartAmbient();
+        }, { once: true });
     }
     const ENTER_SOUND_DELAY = 160;
     const PAGE_EXIT_DURATION = 900;
     //  welcome page exit sound effects
     document.querySelectorAll('.enter-btn').forEach((el) => {
         el.addEventListener('click', () => {
-            // same tune you like: click + then woosh
+            // same tune you like: click snd then woosh
             playSound(clickSound);
             window.setTimeout(() => playSound(enterSound), ENTER_SOUND_DELAY);
         });
@@ -59,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     //cursor trail matrix animation effects
     const cursorTrailContainer = document.getElementById('cursor-trail-container');
-    // Use width instead of pointer media – simple + predictable
+    // checking screen size to restrict pointer animation
     const isWideScreen = window.innerWidth >= 900;
     if (cursorTrailContainer && isWideScreen) {
         let lastSpawn = 0;
