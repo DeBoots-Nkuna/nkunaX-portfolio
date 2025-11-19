@@ -314,7 +314,7 @@ section.active {
 
 /* Generic page leave animation for inner pages */
 body.page-leaving {
-  animation: pageExit 0.7s ease-in forwards;
+  animation: pageExit 0.9s ease-in forwards;
 }
 
 @keyframes pageExit {

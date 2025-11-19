@@ -2,41 +2,41 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('NX base script loaded');
     const clickSound = document.querySelector('#ui-click-sound');
     const enterSound = document.querySelector('#ui-enter-sound');
-    // Always play sound when called (we'll keep it simple for now)
     function playSound(audioEl) {
         if (!audioEl)
             return;
         audioEl.currentTime = 0;
         audioEl.play().catch(() => {
-            // ignore play errors
+            // ignore errors
         });
     }
-    // === 1) INDEX PAGE: keep your original feel =====================
     const ENTER_SOUND_DELAY = 160;
+    const PAGE_EXIT_DURATION = 900; // must match CSS (0.9s)
+    // === 1) INDEX PAGE: keep your original tune behaviour ===
     document.querySelectorAll('.enter-btn').forEach((el) => {
         el.addEventListener('click', () => {
-            // Same behaviour you liked on index.html:
+            // Same as before: click + then woosh
             playSound(clickSound);
             window.setTimeout(() => playSound(enterSound), ENTER_SOUND_DELAY);
             // Navigation + matrix exit is still handled in index.js
         });
     });
-    // === 2) INNER PAGES: nav links with smooth exit =================
+    // === 2) INNER PAGES: nav links with smooth exit + same tune ===
     const navBtns = document.querySelectorAll('.btn-sound');
-    const PAGE_EXIT_DURATION = 700; // must match CSS (0.7s)
     console.log('[sound] .btn-sound count:', navBtns.length);
     navBtns.forEach((el) => {
         el.addEventListener('click', (event) => {
             event.preventDefault();
             const href = el.href;
-            console.log('[sound] nav clicked:', href);
-            // Add page-leaving only once
+            console.log('[nav] clicked:', href);
+            // Add exit animation on body
             if (!document.body.classList.contains('page-leaving')) {
                 document.body.classList.add('page-leaving');
             }
-            // Play the click sound
+            // Play the same "tune" as index: click + woosh
             playSound(clickSound);
-            // After animation, navigate
+            window.setTimeout(() => playSound(enterSound), ENTER_SOUND_DELAY);
+            // After exit animation, go to the new page
             window.setTimeout(() => {
                 window.location.href = href;
             }, PAGE_EXIT_DURATION);
