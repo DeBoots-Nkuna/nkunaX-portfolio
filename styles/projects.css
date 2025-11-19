@@ -5,7 +5,7 @@
   justify-content: center;
   gap: 2.5rem;
   padding: 10rem 9% 4rem;
-  min-height: calc(100vh - 10rem - 3.1rem);
+  min-height: calc(100vh - 13.1rem);
   background: radial-gradient(
       circle at 15% 15%,
       rgba(124, 240, 61, 0.08),
