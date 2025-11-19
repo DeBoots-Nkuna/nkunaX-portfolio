@@ -2,111 +2,160 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('NX base script loaded');
     const clickSound = document.querySelector('#ui-click-sound');
     const enterSound = document.querySelector('#ui-enter-sound');
+    const soundToggleBtn = document.querySelector('.sound-toggle');
+    // 🔊 Sound ON by default unless user previously turned it off
+    let soundEnabled = localStorage.getItem('nx_sound_enabled') !== 'false';
+    const updateSoundToggleLabel = () => {
+        if (!soundToggleBtn)
+            return;
+        soundToggleBtn.textContent = soundEnabled ? '🔊 Sound: On' : '🔈 Sound: Off';
+        soundToggleBtn.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
+    };
     function playSound(audioEl) {
-        if (!audioEl)
+        if (!soundEnabled || !audioEl)
             return;
         audioEl.currentTime = 0;
         audioEl.play().catch(() => {
-            // ignore errors
+            // ignore autoplay errors
+        });
+    }
+    // Init toggle, if present on this page
+    if (soundToggleBtn) {
+        updateSoundToggleLabel();
+        soundToggleBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('nx_sound_enabled', soundEnabled ? 'true' : 'false');
+            updateSoundToggleLabel();
         });
     }
     const ENTER_SOUND_DELAY = 160;
-    const PAGE_EXIT_DURATION = 900; // must match CSS (0.9s)
-    // === 1) INDEX PAGE: keep your original tune behaviour ===
+    const PAGE_EXIT_DURATION = 900;
+    //  welcome page exit sound effects
     document.querySelectorAll('.enter-btn').forEach((el) => {
         el.addEventListener('click', () => {
-            // Same as before: click + then woosh
+            // same tune you like: click + then woosh
             playSound(clickSound);
             window.setTimeout(() => playSound(enterSound), ENTER_SOUND_DELAY);
-            // Navigation + matrix exit is still handled in index.js
         });
     });
-    // === 2) INNER PAGES: nav links with smooth exit + same tune ===
+    //inner pages exit sound effects
     const navBtns = document.querySelectorAll('.btn-sound');
-    console.log('[sound] .btn-sound count:', navBtns.length);
     navBtns.forEach((el) => {
         el.addEventListener('click', (event) => {
             event.preventDefault();
             const href = el.href;
-            console.log('[nav] clicked:', href);
-            // Add exit animation on body
+            // trigger shared Matrix transition layer
             if (!document.body.classList.contains('page-leaving')) {
                 document.body.classList.add('page-leaving');
             }
-            // Play the same "tune" as index: click + woosh
+            // play same tune as welcome: click + woosh
             playSound(clickSound);
             window.setTimeout(() => playSound(enterSound), ENTER_SOUND_DELAY);
-            // After exit animation, go to the new page
+            // after overlay animation, navigate
             window.setTimeout(() => {
                 window.location.href = href;
             }, PAGE_EXIT_DURATION);
         });
     });
+    //cursor trail matrix animation effects
+    const cursorTrailContainer = document.getElementById('cursor-trail-container');
+    // Use width instead of pointer media – simple + predictable
+    const isWideScreen = window.innerWidth >= 900;
+    if (cursorTrailContainer && isWideScreen) {
+        let lastSpawn = 0;
+        const colors = ['#bbf7d0', '#4ade80', '#22c55e', '#a3e635'];
+        function spawnGlyph(x, y, opts) {
+            var _a, _b, _c, _d;
+            const glyph = document.createElement('div');
+            const isClick = (_a = opts === null || opts === void 0 ? void 0 : opts.isClick) !== null && _a !== void 0 ? _a : false;
+            const offsetX = (_b = opts === null || opts === void 0 ? void 0 : opts.offsetX) !== null && _b !== void 0 ? _b : 0;
+            const offsetY = (_c = opts === null || opts === void 0 ? void 0 : opts.offsetY) !== null && _c !== void 0 ? _c : 0;
+            glyph.className = isClick
+                ? 'cursor-glyph cursor-glyph--click'
+                : 'cursor-glyph';
+            const length = isClick ? 18 + Math.random() * 20 : 10 + Math.random() * 22;
+            const tilt = (Math.random() - 0.5) * 24;
+            const color = (_d = colors[Math.floor(Math.random() * colors.length)]) !== null && _d !== void 0 ? _d : '#22c55e';
+            glyph.style.left = `${x + offsetX}px`;
+            glyph.style.top = `${y + offsetY}px`;
+            glyph.style.height = `${length}px`;
+            glyph.style.backgroundColor = color;
+            glyph.style.boxShadow = `0 0 14px ${color}`;
+            glyph.style.transform = `translate(-50%, -50%) rotate(${tilt}deg)`;
+            const duration = isClick
+                ? 0.45 + Math.random() * 0.15
+                : 0.45 + Math.random() * 0.25;
+            glyph.style.animationDuration = `${duration}s`;
+            cursorTrailContainer === null || cursorTrailContainer === void 0 ? void 0 : cursorTrailContainer.appendChild(glyph);
+            setTimeout(() => {
+                glyph.remove();
+            }, duration * 1000 + 120);
+        }
+        // Regular rain trail on move
+        window.addEventListener('mousemove', (e) => {
+            const now = performance.now();
+            if (now - lastSpawn < 20)
+                return;
+            lastSpawn = now;
+            spawnGlyph(e.clientX, e.clientY);
+        });
+        // Splash burst on click
+        window.addEventListener('click', (e) => {
+            const centerX = e.clientX;
+            const centerY = e.clientY;
+            const count = 6;
+            for (let i = 0; i < count; i++) {
+                const angle = (Math.PI * 2 * i) / count;
+                const radius = 10 + Math.random() * 14;
+                const offsetX = Math.cos(angle) * radius;
+                const offsetY = Math.sin(angle) * radius;
+                spawnGlyph(centerX, centerY, {
+                    isClick: true,
+                    offsetX,
+                    offsetY,
+                });
+            }
+        });
+    }
+    //matrix rail background
+    const canvas = document.getElementById('matrix');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        // matrix bg
+        if (ctx) {
+            const chars = '01✓⚡+×•';
+            const fontSize = 16;
+            let columns = 0;
+            let drops = [];
+            const resize = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                columns = Math.floor(canvas.width / fontSize);
+                drops = Array.from({ length: columns }, () => 1);
+            };
+            resize();
+            const draw = () => {
+                var _a;
+                ctx.fillStyle = 'rgba(31, 36, 45, 0.25)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#7cf03d';
+                ctx.font = `${fontSize}px monospace`;
+                for (let i = 0; i < drops.length; i++) {
+                    const y = (_a = drops[i]) !== null && _a !== void 0 ? _a : 1;
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                    const x = i * fontSize;
+                    ctx.fillText(text, x, y * fontSize);
+                    let newY = y + 1;
+                    if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                        newY = 0;
+                    }
+                    drops[i] = newY;
+                }
+            };
+            window.addEventListener('resize', resize);
+            setInterval(draw, 50);
+        }
+    }
 });
 export {};
-// cursor pointer effects
-// const cursorTrailContainer = document.getElementById(
-//   'cursor-trail-container'
-// ) as HTMLDivElement | null
-// if (cursorTrailContainer && isDesktop) {
-//   let lastSpawn = 0
-//   const colors = ['#bbf7d0', '#4ade80', '#22c55e', '#a3e635'] as const
-//   function spawnGlyph(
-//     x: number,
-//     y: number,
-//     opts?: { isClick?: boolean; offsetX?: number; offsetY?: number }
-//   ) {
-//     const glyph = document.createElement('div')
-//     const isClick = opts?.isClick ?? false
-//     const offsetX = opts?.offsetX ?? 0
-//     const offsetY = opts?.offsetY ?? 0
-//     glyph.className = isClick
-//       ? 'cursor-glyph cursor-glyph--click'
-//       : 'cursor-glyph'
-//     const length = isClick
-//       ? 18 + Math.random() * 20 // slightly longer for click
-//       : 10 + Math.random() * 22
-//     const tilt = (Math.random() - 0.5) * 24 // -12° to 12°
-//     const color = colors[Math.floor(Math.random() * colors.length)] ?? '#22c55e'
-//     glyph.style.left = `${x + offsetX}px`
-//     glyph.style.top = `${y + offsetY}px`
-//     glyph.style.height = `${length}px`
-//     glyph.style.backgroundColor = color
-//     glyph.style.boxShadow = `0 0 14px ${color}`
-//     glyph.style.transform = `translate(-50%, -50%) rotate(${tilt}deg)`
-//     const duration = isClick
-//       ? 0.45 + Math.random() * 0.15 // click: 0.45–0.6s
-//       : 0.45 + Math.random() * 0.25 // move: 0.45–0.7s
-//     glyph.style.animationDuration = `${duration}s`
-//     cursorTrailContainer?.appendChild(glyph)
-//     setTimeout(() => {
-//       glyph.remove()
-//     }, duration * 1000 + 120)
-//   }
-//   // Regular rain trail on move
-//   window.addEventListener('mousemove', (e: MouseEvent) => {
-//     const now = performance.now()
-//     if (now - lastSpawn < 20) return
-//     lastSpawn = now
-//     spawnGlyph(e.clientX, e.clientY)
-//   })
-//   // Splash burst on click
-//   window.addEventListener('click', (e: MouseEvent) => {
-//     const centerX = e.clientX
-//     const centerY = e.clientY
-//     // create a small radial burst
-//     const count = 6 // number of bars in splash
-//     for (let i = 0; i < count; i++) {
-//       const angle = (Math.PI * 2 * i) / count
-//       const radius = 10 + Math.random() * 14 // distance from center
-//       const offsetX = Math.cos(angle) * radius
-//       const offsetY = Math.sin(angle) * radius
-//       spawnGlyph(centerX, centerY, {
-//         isClick: true,
-//         offsetX,
-//         offsetY,
-//       })
-//     }
-//   })
-// }
 //# sourceMappingURL=base.js.map

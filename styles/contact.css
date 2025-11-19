@@ -5,7 +5,7 @@
   justify-content: center;
   gap: 3rem;
   padding: 10rem 9% 4rem;
-  min-height: calc(100vh - 10rem - 3.3rem);
+  min-height: calc(100vh - 10rem - 3.1rem);
   background: radial-gradient(
       circle at 20% 20%,
       rgba(124, 240, 61, 0.05),
@@ -13,7 +13,7 @@
     ),
     radial-gradient(circle at 80% 0%, rgba(124, 240, 61, 0.05), transparent 25%),
     var(--bg-color);
-  animation: softPageIn 0.45s ease-out forwards;
+  /* animation: softPageIn 0.45s ease-out forwards; */
   visibility: visible;
   opacity: 1;
   overflow: hidden;

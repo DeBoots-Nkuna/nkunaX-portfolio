@@ -13,8 +13,8 @@
     var(--bg-color);
   visibility: visible;
   opacity: 1;
-  animation: softPageIn 0.45s ease-out forwards;
-  min-height: calc(100vh - 10rem - 3.3rem);
+  /* animation: softPageIn 0.45s ease-out forwards; */
+  min-height: calc(100vh - 10rem - 3.1rem);
   padding: 10rem 7% 4rem;
   box-sizing: border-box;
 }

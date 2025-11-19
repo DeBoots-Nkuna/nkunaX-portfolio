@@ -1,12 +1,3 @@
-/* full-screen matrix background */
-canvas#matrix {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--bg-color);
-}
-
 /* dark glass layer + center content */
 .overlay {
   position: fixed;
